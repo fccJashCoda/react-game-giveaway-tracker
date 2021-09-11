@@ -3,10 +3,34 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  gql,
+} from '@apollo/client';
+
+const client = new ApolloClient({
+  // uri: 'https://48p1r2roz4.sse.codesandbox.io',
+  uri: 'http://localhost:4000/graphql',
+  cache: new InMemoryCache(),
+});
+
+client
+  .query({
+    query: gql`
+      query getStore {
+        message
+      }
+    `,
+  })
+  .then((result) => console.log(result));
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

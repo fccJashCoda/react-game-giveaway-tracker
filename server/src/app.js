@@ -49,7 +49,7 @@ app.use(express.json());
 let cache = null;
 async function fetchData() {
   try {
-    const response = await axios.get('http://localhost:7555');
+    const response = await axios.get(process.env.API_SRC);
     cache = response.data;
   } catch (error) {
     console.log(error.message);
@@ -100,6 +100,7 @@ const schema = buildSchema(`
     thumbnail: String
     image: String
     gamerpower_url: String
+    platforms: String
   }
   type Query {
     message: String!,
