@@ -81,13 +81,18 @@ async function fetchData() {
 
 fetchData();
 
-const db = {
+const root = {
   message: () => cache.message,
   store: () => cache.store,
+  getGiveaway: ({ id }) => {
+    console.log('getting id: ' + id);
+    console.log(cache.store.filter((giveaway) => giveaway.id === id));
+    return cache.store.find((giveaway) => giveaway.id === id);
+  },
 };
 
 const schema = buildSchema(`
-  type storeItem {
+  type StoreItem {
     id: Int
     title: String
     description: String
@@ -102,9 +107,11 @@ const schema = buildSchema(`
     gamerpower_url: String
     platforms: String
   }
+
   type Query {
     message: String!,
-    store: [storeItem]!
+    store: [StoreItem]!
+    getGiveaway(id: Int): StoreItem
   }
 `);
 
@@ -112,7 +119,7 @@ app.use(
   '/graphql',
   graphqlHTTP({
     schema: schema,
-    rootValue: db,
+    rootValue: root,
     graphiql: true,
   })
 );
