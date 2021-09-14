@@ -19,20 +19,23 @@ const GiveawayList = () => {
   const { loading, error, data } = useQuery(GIVEAWAY_LIST);
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
+  console.log(styles.gridLayout);
 
   return (
     <div className={styles.gridLayout}>
       {data.store.map(({ id, title, thumbnail, platforms, description }) => (
-        <div key={id}>
-          <img src={thumbnail} alt={title} className={styles.thumbnail} />
-          <p>
-            {id}: {title}
-          </p>
-          <span>{platforms}</span>
-          <p>{description}</p>
-          <Link to={`/giveaway/${id}`}>Go to</Link>
-        </div>
+        <Link to={`/giveaway/${id}`}>
+          <div key={id}>
+            <img src={thumbnail} alt={title} className={styles.thumbnail} />
+            <p>
+              {id}: {title}
+            </p>
+            <span>{platforms}</span>
+            <p>{description}</p>
+          </div>
+        </Link>
       ))}
     </div>
   );

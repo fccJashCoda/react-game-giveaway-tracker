@@ -53,43 +53,10 @@ async function fetchData() {
     cache = response.data;
   } catch (error) {
     console.log(error.message);
-    cache = {
-      message: 'error, serving placeholder data',
-      store: [
-        {
-          id: 0000,
-          title: 'Placeholder',
-          worth: '$9999.99',
-          thumbnail: '#',
-          image: '#',
-          description: 'Placeholder',
-          instructions: 'Placeholder',
-          open_giveaway_url: '#',
-          published_date: 'N/A',
-          type: 'Placeholder',
-          platforms: '',
-          end_date: 'N/A',
-          users: 1590,
-          status: 'Active',
-          gamerpower_url: '#',
-          open_giveaway: '#',
-        },
-      ],
-    };
   }
 }
 
 fetchData();
-
-const root = {
-  message: () => cache.message,
-  store: () => cache.store,
-  getGiveaway: ({ id }) => {
-    console.log('getting id: ' + id);
-    console.log(cache.store.filter((giveaway) => giveaway.id === id));
-    return cache.store.find((giveaway) => giveaway.id === id);
-  },
-};
 
 const schema = buildSchema(`
   type StoreItem {
@@ -114,6 +81,28 @@ const schema = buildSchema(`
     getGiveaway(id: Int): StoreItem
   }
 `);
+
+const root = {
+  message: () => {
+    if (!cache) {
+      throw new Error("The message hasn't arrived yet");
+    }
+    return cache.message;
+  },
+  store: () => {
+    if (!cache) {
+      throw new Error('Store is in another castle');
+    }
+    return cache.store;
+  },
+  getGiveaway: ({ id }) => {
+    const giveaway = cache.store.find((giveaway) => giveaway.id === id);
+    if (!giveaway) {
+      throw new Error('No giveawway with id ' + id);
+    }
+    return giveaway;
+  },
+};
 
 app.use(
   '/graphql',

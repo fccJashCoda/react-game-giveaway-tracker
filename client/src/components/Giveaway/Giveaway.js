@@ -10,6 +10,13 @@ const Giveaway = () => {
         thumbnail
         platforms
         description
+        image
+        type
+        status
+        instructions
+        published_date
+        end_date
+        open_giveaway
       }
     }
   `;
@@ -18,8 +25,37 @@ const Giveaway = () => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {id}</p>;
 
-  console.log(data);
-  return <h2>{data.getGiveaway.title}</h2>;
+  const {
+    title,
+    thumbnail,
+    platforms,
+    description,
+    image,
+    type,
+    status,
+    instructions,
+    published_date,
+    end_date,
+    open_giveaway,
+  } = data.getGiveaway;
+
+  return (
+    <div>
+      <img src={thumbnail} alt={title} />
+      <img src={image} alt={title} />
+      <h2>{title}</h2>
+      <p>{description}</p>
+      <p>{platforms}</p>
+      <div className='dateGroup'>
+        <p>Start date: {published_date}</p>
+        <p>End date: {end_date}</p>
+      </div>
+      <span>{status}</span>
+      <span>{type}</span>
+      <p>{instructions}</p>
+      <a href={open_giveaway}>Open Giveaway</a>
+    </div>
+  );
 };
 
 export default Giveaway;
