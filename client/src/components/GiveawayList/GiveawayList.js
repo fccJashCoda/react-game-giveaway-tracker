@@ -18,6 +18,12 @@ const GIVEAWAY_LIST = gql`
 const GiveawayList = () => {
   const { loading, error, data } = useQuery(GIVEAWAY_LIST);
 
+  const shortDescription = (description) => {
+    return description.length < 250
+      ? description
+      : description.slice(0, 250) + '...';
+  };
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
@@ -33,7 +39,7 @@ const GiveawayList = () => {
               {id}: {title}
             </p>
             <span>{platforms}</span>
-            <p>{description}</p>
+            <p>{shortDescription(description)}</p>
           </div>
         </Link>
       ))}
