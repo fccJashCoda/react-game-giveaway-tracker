@@ -13,27 +13,55 @@
   color: #fff;
 }
 
-@media (min-width: 768px) {
+.gameInfo {
+}
+
+@media (min-width: 600px) {
   .gridLayout {
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(auto, 1fr);
   }
 }
+
 @media (min-width: 1024px) {
   .gridLayout {
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(auto, 1fr);
+    grid-template-columns: 1fr;
+    width: 1024px;
+    margin: auto;
+    /* grid-template-columns: repeat(2, 1fr); */
+    /* grid-template-rows: repeat(auto, 1fr); */
+  }
+  .gameGiveaway {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    margin-bottom: 2em;
+    padding-left: 1em;
+  }
+
+  .gameGiveaway {
+    border-left: 5px solid rebeccapurple;
+  }
+  .gameGiveaway .gameInfo {
+    order: -1;
+    grid-column: 1/8;
+  }
+  .gameGiveaway img {
+    grid-column: 8/13;
   }
 }
+
 @media (min-width: 1440px) {
   .gridLayout {
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(auto, 1fr);
+    /* grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(auto, 1fr); */
   }
 }
 @media (min-width: 2000px) {
   .gridLayout {
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(auto, 1fr);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 2048px;
+    gap: 0 2em;
+    /* grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(auto, 1fr); */
   }
 }

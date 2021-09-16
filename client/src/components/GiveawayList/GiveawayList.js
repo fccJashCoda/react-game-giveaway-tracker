@@ -33,13 +33,15 @@ const GiveawayList = () => {
     <div className={styles.gridLayout}>
       {data.store.map(({ id, title, thumbnail, platforms, description }) => (
         <Link to={`/giveaway/${id}`}>
-          <div key={id}>
+          <div key={id} className={styles.gameGiveaway}>
             <img src={thumbnail} alt={title} className={styles.thumbnail} />
-            <p>
-              {id}: {title}
-            </p>
-            <span>{platforms}</span>
-            <p>{shortDescription(description)}</p>
+            <div className={styles.gameInfo}>
+              <h2>
+                {id}: {title}
+              </h2>
+              <span>{platforms}</span>
+              <p>{shortDescription(description)}</p>
+            </div>
           </div>
         </Link>
       ))}

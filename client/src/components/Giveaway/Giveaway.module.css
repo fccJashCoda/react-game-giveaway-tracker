@@ -1,8 +1,14 @@
 .giveaway {
   margin: auto;
-  width: 40%;
 }
 
 .giveaway img {
   width: 100%;
+}
+
+@media (min-width: 768px) {
+  .giveaway {
+    margin: auto;
+    width: 768px;
+  }
 }

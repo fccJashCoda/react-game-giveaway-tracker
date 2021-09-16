@@ -28,7 +28,6 @@ const Giveaway = () => {
 
   const {
     title,
-    thumbnail,
     platforms,
     description,
     image,
@@ -40,10 +39,11 @@ const Giveaway = () => {
     open_giveaway,
   } = data.getGiveaway;
 
+  console.log(instructions);
+
   return (
     <div className={styles.giveaway}>
-      <img src={thumbnail} alt={title} />
-      {/* <img src={image} alt={title} /> */}
+      <img src={image} alt={title} />
       <div>
         <h2>{title}</h2>
         <p>{description}</p>
