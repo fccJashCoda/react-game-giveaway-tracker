@@ -11,9 +11,23 @@
 .gridLayout a {
   text-decoration: none;
   color: #fff;
+  color: black;
+}
+.gameGiveaway:hover {
+  background: skyblue;
+}
+.gameInfo {
 }
 
-.gameInfo {
+.container {
+  width: 95%;
+  margin: auto;
+}
+
+@media (min-width: 500px) {
+  .container {
+    width: 98%;
+  }
 }
 
 @media (min-width: 600px) {
@@ -27,19 +41,19 @@
     grid-template-columns: 1fr;
     width: 1024px;
     margin: auto;
-    /* grid-template-columns: repeat(2, 1fr); */
-    /* grid-template-rows: repeat(auto, 1fr); */
   }
   .gameGiveaway {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     margin-bottom: 2em;
     padding-left: 1em;
-  }
-
-  .gameGiveaway {
     border-left: 5px solid rebeccapurple;
   }
+
+  .gameGiveaway:hover {
+    transform: scale(1.05);
+  }
+
   .gameGiveaway .gameInfo {
     order: -1;
     grid-column: 1/8;
@@ -51,8 +65,6 @@
 
 @media (min-width: 1440px) {
   .gridLayout {
-    /* grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(auto, 1fr); */
   }
 }
 @media (min-width: 2000px) {
@@ -61,7 +73,5 @@
     grid-template-columns: repeat(2, 1fr);
     width: 2048px;
     gap: 0 2em;
-    /* grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(auto, 1fr); */
   }
 }

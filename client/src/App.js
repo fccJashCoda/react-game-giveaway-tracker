@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 function App() {
   return (
     <Router>
-      <div className='App container'>
+      <div className='App'>
         <h1>
           <Link to='/'>Acme Giveaways</Link>
         </h1>
@@ -20,6 +20,10 @@ function App() {
             <Giveaway />
           </Route>
         </Switch>
+
+        <footer>
+          <p>Copypasta</p>
+        </footer>
       </div>
     </Router>
   );

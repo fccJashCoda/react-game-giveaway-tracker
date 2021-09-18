@@ -1,14 +1,28 @@
-.container {
-  width: 95%;
-  margin: auto;
-}
-
 h1 {
   text-align: center;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 1em;
 }
 
-@media (min-width: 500px) {
-  .container {
-    width: 98%;
+h1 a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 5rem;
+}
+
+footer {
+  text-align: center;
+  background: #333;
+  color: #fff;
+}
+footer p {
+  padding: 5em;
+  margin: 0;
+}
+
+@media (max-width: 500px) {
+  h1 a {
+    font-size: 3rem;
   }
 }
