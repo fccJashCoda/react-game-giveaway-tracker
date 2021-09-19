@@ -1,0 +1,54 @@
+.pill {
+  font-size: 0.8em;
+  background: #00adef;
+  padding: 0.5em 1em;
+  border-radius: 50px;
+  margin-right: 0.5em;
+}
+
+.steam {
+  background: #1b2838;
+}
+
+.epic-games-store {
+  background: black;
+}
+
+.origin {
+  background: orange;
+}
+
+.nintendo-switch {
+  background: red;
+}
+
+.xbox-360,
+.xbox-one,
+.xbox-x\|s {
+  background: green;
+}
+
+.playstation-4,
+.playstation-5 {
+  background: #003791;
+}
+
+.drm-free {
+  background: pink;
+}
+
+.android {
+  background: #3ddc84;
+}
+
+.ios {
+  background: #999999;
+}
+
+.ubisoft-connect {
+  background: linear-gradient(to right, #e66465, #9198e5);
+}
+
+.itch\.io {
+  background: #fa5c5c;
+}

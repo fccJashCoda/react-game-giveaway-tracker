@@ -2,6 +2,7 @@ import { useQuery, gql } from '@apollo/client';
 import styles from './GiveawayList.module.css';
 
 import { Link } from 'react-router-dom';
+import PlatformPills from '../PlatformPills/PlatformPills';
 
 const GIVEAWAY_LIST = gql`
   query GetGiveaways {
@@ -39,7 +40,7 @@ const GiveawayList = () => {
               <h2>
                 {id}: {title}
               </h2>
-              <span>{platforms}</span>
+              <PlatformPills platforms={platforms} />
               <p>{shortDescription(description)}</p>
             </div>
           </div>
