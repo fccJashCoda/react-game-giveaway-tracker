@@ -6,10 +6,12 @@ const PlatformPills = ({ platforms }) => {
   return (
     <div>
       {platformList.map((platform) => {
-        const impact = platform.split(' ').join('-').toLowerCase();
-        console.log(impact);
+        const platformName = platform.split(' ').join('-').toLowerCase();
         return (
-          <span key={platform} className={`${styles.pill} ${styles[impact]}`}>
+          <span
+            key={platform}
+            className={`${styles.pill} ${styles[platformName]}`}
+          >
             {platform}
           </span>
         );

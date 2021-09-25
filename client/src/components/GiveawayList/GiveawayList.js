@@ -3,6 +3,8 @@ import styles from './GiveawayList.module.css';
 
 import { Link } from 'react-router-dom';
 import PlatformPills from '../PlatformPills/PlatformPills';
+import Loading from '../Loading/Loading';
+import ServerError from '../ServerError/ServerError';
 
 const GIVEAWAY_LIST = gql`
   query GetGiveaways {
@@ -25,16 +27,14 @@ const GiveawayList = () => {
       : description.slice(0, 250) + '...';
   };
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
-
-  console.log(styles.gridLayout);
+  if (loading) return <Loading />;
+  if (error) return <ServerError message={error.message} />;
 
   return (
     <div className={styles.gridLayout}>
       {data.store.map(({ id, title, thumbnail, platforms, description }) => (
-        <Link to={`/giveaway/${id}`}>
-          <div key={id} className={styles.gameGiveaway}>
+        <Link key={id} to={`/giveaway/${id}`}>
+          <div className={styles.gameGiveaway}>
             <img src={thumbnail} alt={title} className={styles.thumbnail} />
             <div className={styles.gameInfo}>
               <h2>
