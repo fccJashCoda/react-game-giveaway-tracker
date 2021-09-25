@@ -24,7 +24,7 @@ client
     `,
   })
   .then((result) => console.log(result))
-  .catch((err) => console.log(err));
+  .catch((err) => console.error(err.message));
 
 ReactDOM.render(
   <React.StrictMode>
