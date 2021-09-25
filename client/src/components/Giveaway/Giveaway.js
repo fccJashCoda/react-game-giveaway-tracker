@@ -47,6 +47,7 @@ const Giveaway = () => {
 
   return (
     <div className={styles.giveaway}>
+      <Loading />
       <img src={image} alt={title} />
       <div>
         <h2>{title}</h2>
