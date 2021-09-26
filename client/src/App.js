@@ -21,7 +21,7 @@ function App() {
           </Route>
         </Switch>
 
-        <div className='spring'></div>
+        <div className='spring' />
         <footer>
           <p>Copypasta</p>
         </footer>
