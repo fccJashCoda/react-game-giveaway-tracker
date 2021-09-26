@@ -8,7 +8,7 @@ import ServerError from '../ServerError/ServerError';
 
 const GIVEAWAY_LIST = gql`
   query GetGiveaways {
-    store {
+    giveaways {
       id
       title
       thumbnail
@@ -32,20 +32,22 @@ const GiveawayList = () => {
 
   return (
     <div className={styles.gridLayout}>
-      {data.store.map(({ id, title, thumbnail, platforms, description }) => (
-        <Link key={id} to={`/giveaway/${id}`}>
-          <div className={styles.gameGiveaway}>
-            <img src={thumbnail} alt={title} className={styles.thumbnail} />
-            <div className={styles.gameInfo}>
-              <h2>
-                {id}: {title}
-              </h2>
-              <PlatformPills platforms={platforms} />
-              <p>{shortDescription(description)}</p>
+      {data.giveaways.map(
+        ({ id, title, thumbnail, platforms, description }) => (
+          <Link key={id} to={`/giveaway/${id}`}>
+            <div className={styles.gameGiveaway}>
+              <img src={thumbnail} alt={title} className={styles.thumbnail} />
+              <div className={styles.gameInfo}>
+                <h2>
+                  {id}: {title}
+                </h2>
+                <PlatformPills platforms={platforms} />
+                <p>{shortDescription(description)}</p>
+              </div>
             </div>
-          </div>
-        </Link>
-      ))}
+          </Link>
+        )
+      )}
     </div>
   );
 };

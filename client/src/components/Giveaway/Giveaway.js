@@ -10,7 +10,7 @@ const Giveaway = () => {
   const { id } = useParams();
   const GIVEAWAY = gql`
     query GetGiveaways {
-      getGiveaway(id:${id}) {
+      giveaway(id:${id}) {
         title
         thumbnail
         platforms
@@ -41,7 +41,7 @@ const Giveaway = () => {
     published_date,
     end_date,
     open_giveaway,
-  } = data.getGiveaway;
+  } = data.giveaway;
 
   const isntructionList = instructions.split('\r\n');
 

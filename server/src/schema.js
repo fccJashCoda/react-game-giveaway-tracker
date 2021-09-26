@@ -5,12 +5,12 @@ const typeDefs = gql`
     id: ID!
     title: String
     description: String
-    platfroms: String
+    platforms: String
     thumbnail: String
     image: String
     type: String
     status: String
-    instuctions: String
+    instructions: String
     published_date: String
     end_date: String
     open_giveaway: String

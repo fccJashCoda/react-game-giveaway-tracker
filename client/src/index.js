@@ -11,20 +11,23 @@ import {
 } from '@apollo/client';
 
 const client = new ApolloClient({
-  uri: 'http://localhost:4000/graphql',
+  uri: 'http://localhost:4005/graphql',
   cache: new InMemoryCache(),
 });
 
 client
   .query({
     query: gql`
-      query getStore {
-        message
+      query GetGiveaways {
+        giveaways {
+          id
+          title
+        }
       }
     `,
   })
-  .then((result) => console.log(result))
-  .catch((err) => console.error(err.message));
+  .then((result) => console.log(result.data))
+  .catch((err) => console.error(err));
 
 ReactDOM.render(
   <React.StrictMode>
