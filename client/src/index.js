@@ -3,31 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  gql,
-} from '@apollo/client';
+import { ApolloClient, ApolloProvider } from '@apollo/client';
+import { cache } from './cache';
+
+console.log(cache);
+console.log(cache.data.data);
 
 const client = new ApolloClient({
+  cache,
   uri: 'http://localhost:4005/graphql',
-  cache: new InMemoryCache(),
 });
-
-client
-  .query({
-    query: gql`
-      query GetGiveaways {
-        giveaways {
-          id
-          title
-        }
-      }
-    `,
-  })
-  .then((result) => console.log(result.data))
-  .catch((err) => console.error(err));
 
 ReactDOM.render(
   <React.StrictMode>
