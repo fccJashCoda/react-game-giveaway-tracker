@@ -17,8 +17,14 @@ const typeDefs = gql`
   }
 
   type Query {
-    giveaways: [Giveaway]!
+    giveaways(pageSize: Int, after: String): GiveawayConnection!
     giveaway(id: ID!): Giveaway
+  }
+
+  type GiveawayConnection {
+    cursor: String
+    hasMore: Boolean!
+    giveaways: [Giveaway]!
   }
 `;
 

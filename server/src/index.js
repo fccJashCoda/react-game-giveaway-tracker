@@ -1,10 +1,13 @@
-const app = require('./app');
-require('dotenv').config();
+const { paginateResults } = require('./utils');
 
-console.log('Starting Server');
-console.log('---------------');
+const data = Array(86)
+  .fill(0)
+  .map((_, i) => {
+    return {
+      cursor: String(i),
+      giveaway: i,
+    };
+  });
+const response = paginateResults({ after: '79', pageSize: 10, results: data });
 
-const port = process.env.PORT || 4010;
-app.listen(port, () =>
-  console.log('Graphql server: http://localhost:4000/graphql , Listening...')
-);
+console.log(response);

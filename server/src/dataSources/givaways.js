@@ -1,5 +1,5 @@
 const { RESTDataSource } = require('apollo-datasource-rest');
-
+const { v4: uuidv4 } = require('uuid');
 class GiveawayApi extends RESTDataSource {
   constructor() {
     super();
@@ -16,6 +16,7 @@ class GiveawayApi extends RESTDataSource {
   giveawayReducer(giveaway) {
     return {
       id: giveaway.id || 0,
+      cursor: uuidv4(),
       title: giveaway.title,
       description: giveaway.description,
       platforms: giveaway.platforms,
