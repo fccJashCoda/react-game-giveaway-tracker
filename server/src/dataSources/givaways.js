@@ -16,7 +16,7 @@ class GiveawayApi extends RESTDataSource {
   giveawayReducer(giveaway) {
     return {
       id: giveaway.id || 0,
-      cursor: uuidv4(),
+      cursor: giveaway.title,
       title: giveaway.title,
       description: giveaway.description,
       platforms: giveaway.platforms,

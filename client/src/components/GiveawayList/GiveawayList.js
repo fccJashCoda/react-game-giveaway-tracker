@@ -8,8 +8,8 @@ import Loading from '../Loading/Loading';
 import ServerError from '../ServerError/ServerError';
 
 const GIVEAWAY_LIST = gql`
-  query GetGiveaways($after: String) {
-    giveaways(after: $after) {
+  query GetGiveaways($pageSize: Int, $after: String) {
+    giveaways(pageSize: $pageSize, after: $after) {
       cursor
       hasMore
       giveaways {
@@ -37,34 +37,39 @@ const GiveawayList = () => {
   if (error) return <ServerError message={error.message} />;
   if (!data) return <p>Not Found</p>;
 
-  console.log(data.giveaways.cursor);
-
   return (
-    <div className={styles.gridLayout}>
-      {data.giveaways &&
-        data.giveaways.giveaways &&
-        data.giveaways.giveaways.map(
-          ({ id, title, thumbnail, platforms, description }) => (
-            <Link key={id} to={`/giveaway/${id}`}>
-              <div className={styles.gameGiveaway}>
-                <img src={thumbnail} alt={title} className={styles.thumbnail} />
-                <div className={styles.gameInfo}>
-                  <h2>
-                    {id}: {title}
-                  </h2>
-                  <PlatformPills platforms={platforms} />
-                  <p>{shortDescription(description)}</p>
+    <main className={styles.mainCol}>
+      <div className={styles.gridLayout}>
+        {data.giveaways &&
+          data.giveaways.giveaways &&
+          data.giveaways.giveaways.map(
+            ({ id, title, thumbnail, platforms, description }) => (
+              <Link key={id} to={`/giveaway/${id}`}>
+                <div className={styles.gameGiveaway}>
+                  <img
+                    src={thumbnail}
+                    alt={title}
+                    className={styles.thumbnail}
+                  />
+                  <div className={styles.gameInfo}>
+                    <h2>
+                      {id}: {title}
+                    </h2>
+                    <PlatformPills platforms={platforms} />
+                    <p>{shortDescription(description)}</p>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          )
-        )}
+              </Link>
+            )
+          )}
+      </div>
       {data.giveaways &&
         data.giveaways.hasMore &&
         (isLoadingMore ? (
           <Loading />
         ) : (
           <button
+            className={styles.loadMore}
             onClick={async () => {
               setIsLoadingMore(true);
               await fetchMore({
@@ -77,7 +82,7 @@ const GiveawayList = () => {
             Load more
           </button>
         ))}
-    </div>
+    </main>
   );
 };
 

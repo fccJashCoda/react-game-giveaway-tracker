@@ -10,6 +10,7 @@ module.exports = {
         results: allGiveaways,
       });
 
+      console.log(giveaways.map((give) => give.title));
       return {
         giveaways,
         cursor: giveaways.length
