@@ -52,18 +52,43 @@ const Giveaway = () => {
         <h2>{title}</h2>
         <PlatformPills platforms={platforms} />
         <p>{description}</p>
-        <div className='dateGroup'>
+        <div className={styles.dateGroup}>
           <p>Start date: {published_date}</p>
           <p>End date: {end_date}</p>
         </div>
-        <span>Status: {status}</span>
-        <span>Type: {type}</span>
+        <div className={styles.giveawayStatusGroup}>
+          <p>
+            Status:{' '}
+            <span
+              className={`${styles.giveawayStatus} ${
+                status === 'Active' ? styles.giveawayActive : null
+              }`}
+            >
+              {status}
+            </span>
+          </p>
+          <p>
+            Type:{' '}
+            <span
+              className={`${styles.giveawayType} ${
+                type === 'Full Game' ? styles.giveawayFull : null
+              }`}
+            >
+              {type}
+            </span>
+          </p>
+        </div>
+        <h4>Instructions:</h4>
         <ul>
           {isntructionList.map((instruction, i) => (
             <li key={i}>{instruction}</li>
           ))}
         </ul>
-        <a href={open_giveaway}>Open Giveaway</a>
+        <div className={styles.btnWrapper}>
+          <a className={styles.openGiveaway} href={open_giveaway}>
+            Open Giveaway
+          </a>
+        </div>
       </div>
     </div>
   );
