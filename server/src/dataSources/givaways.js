@@ -1,15 +1,15 @@
 const { RESTDataSource } = require('apollo-datasource-rest');
-const { v4: uuidv4 } = require('uuid');
 class GiveawayApi extends RESTDataSource {
   constructor() {
     super();
-    this.baseURL = 'http://localhost:7555';
+    this.baseURL = 'https://www.gamerpower.com/api/giveaways';
+    // this.baseURL = 'http://localhost:7555';
   }
 
   async getAllGiveaways() {
     const response = await this.get('');
-    return Array.isArray(response.store)
-      ? response.store.map((giveaway) => this.giveawayReducer(giveaway))
+    return Array.isArray(response)
+      ? response.map((giveaway) => this.giveawayReducer(giveaway))
       : [];
   }
 
